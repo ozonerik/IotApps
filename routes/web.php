@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\IotledsController;
+use App\Http\Controllers\IotledsUpdate;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ Route::get('/', function () {
  */
 
 Route::get('/', IotledsController::class);
+Route::get('ledupdate/{serialno?}/{status?}', [IotledsUpdate::class, 'ledupdate'])->name('ledupdate');

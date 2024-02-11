@@ -16,7 +16,7 @@ class IotledsSeeder extends Seeder
     {
         Iotleds::create([
             'status' => '0',
-            'iotdevices_id' => '1',
+            'iotdevice_id' => '1',
         ]);
     }
 }

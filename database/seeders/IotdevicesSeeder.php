@@ -15,7 +15,7 @@ class IotdevicesSeeder extends Seeder
     public function run(): void
     {
         Iotdevices::create([
-            'serialno' => Str::uuid(),
+            'serialno' => '1234',
             'name' => 'LED 1',
         ]);
     }

@@ -8,22 +8,35 @@ use App\Models\Iotleds;
 class IotledsController extends Component
 {
     public $status = '0';
-    public $serialno = '1';
+    public $serialno = '1234';
  
-    public function increment()
+    public function led_on()
     {
-        $this->status=1;
-        Iotleds::where('iotdevices_id', $this->serialno)->update(['status' => $this->status]);
+        return $this->status=1;
     }
  
-    public function decrement()
+    public function led_off()
     {
-        $this->status=0;
-        Iotleds::where('iotdevices_id', $this->serialno)->update(['status' => $this->status]);
+        return $this->status=0;
+    }
+
+    public function save()
+    {
+        $iotled = Iotleds::whereRelation('iotdevice', 'serialno', '=', $this->serialno)->first();
+        if(!empty($iotled)){
+            //dd('status = '.$iotled->status);
+            Iotleds::whereRelation('iotdevice', 'serialno', '=', $this->serialno)
+            ->update([
+                'status' => $this->status
+            ]);
+        }else{
+            dd('serial no tidak ditemukan');
+        }
     }
 
     public function render()
     {
-        return view('livewire.iotleds-controller');
+        $data['statusled'] = Iotleds::whereRelation('iotdevice', 'serialno', '=', $this->serialno)->first();
+        return view('livewire.iotleds-controller',$data);
     }
 }
