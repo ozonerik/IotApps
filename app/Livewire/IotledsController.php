@@ -24,7 +24,6 @@ class IotledsController extends Component
     {
         $iotled = Iotleds::whereRelation('iotdevice', 'serialno', '=', $this->serialno)->first();
         if(!empty($iotled)){
-            //dd('status = '.$iotled->status);
             Iotleds::whereRelation('iotdevice', 'serialno', '=', $this->serialno)
             ->update([
                 'status' => $this->status
