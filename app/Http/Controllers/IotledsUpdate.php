@@ -8,32 +8,30 @@ use App\Models\Iotleds;
 class IotledsUpdate extends Controller
 {
 
+    private function cekledstatus($sn){
+
+        $led = Iotleds::whereRelation('iotdevice', 'serialno', '=', $sn)->first();
+        if($led->status == '1'){
+            return "LED_is_on";
+        }else if($led->status == '0'){
+            return "LED_is_off";
+        }else{
+            return "check_LED_status";
+        }
+    }
+    
     public function led2update(Request $request){
         if(!empty($request->sn)){
             $iotled = Iotleds::whereRelation('iotdevice', 'serialno', '=', $request->sn)->first();
             if(!empty($iotled)){
-                if($request->st == ''){
-                    $led = Iotleds::whereRelation('iotdevice', 'serialno', '=', $request->sn)->first();
-                    if($led->status == '1'){
-                        echo "LED_is_on";
-                    }else if($led->status == '0'){
-                        echo "LED_is_off";
-                    }else{
-                        echo "check_LED_status";
-                    }
-                }else{
+                if($request->st != ''){
                     Iotleds::whereRelation('iotdevice', 'serialno', '=', $request->sn)
                     ->update([
                         'status' => $request->st
                     ]);
-                    $led = Iotleds::whereRelation('iotdevice', 'serialno', '=', $request->sn)->first();
-                    if($led->status == '1'){
-                        echo "LED_is_on";
-                    }else if($led->status == '0'){
-                        echo "LED_is_off";
-                    }else{
-                        echo "check_LED_status";
-                    }
+                    echo $this->cekledstatus($request->sn);
+                }else{
+                    echo $this->cekledstatus($request->sn);
                 }
             }else{
                 echo "Serial No Tidak Terdaftar";
@@ -43,24 +41,22 @@ class IotledsUpdate extends Controller
         }
     }
     
-    public function ledupdate(?string $serialno = null , ?string $status = null)
+    public function ledupdate(?string $sn = null , ?string $st = null)
     {
-        if(!empty($serialno)){
-            $iotled = Iotleds::whereRelation('iotdevice', 'serialno', '=', $serialno)->first();
+        if(!empty($sn)){
+            $iotled = Iotleds::whereRelation('iotdevice', 'serialno', '=', $sn)->first();
             if(!empty($iotled)){
-                //dd('status = '.$iotled->status);
-                Iotleds::whereRelation('iotdevice', 'serialno', '=', $serialno)
-                ->update([
-                    'status' => $status
-                ]);
-                $led = Iotleds::whereRelation('iotdevice', 'serialno', '=', $serialno)->first();
-                if($led->status == '1'){
-                    echo "LED_is_on";
-                }else if($led->status == '0'){
-                    echo "LED_is_off";
+                if($st != null ){
+                    Iotleds::whereRelation('iotdevice', 'serialno', '=', $sn)
+                    ->update([
+                        'status' => $st
+                    ]);
+                    echo $this->cekledstatus($sn);
                 }else{
-                    echo "check_LED_status";
+                    echo $this->cekledstatus($sn);
                 }
+
+
             }else{
                 echo "Serial No Tidak Terdaftar";
             }

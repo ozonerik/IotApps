@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\IotledsController;
 use App\Http\Controllers\IotledsUpdate;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,13 @@ Route::get('/', function () {
  */
 
 Route::get('/', IotledsController::class);
-Route::get('ledupdate/{serialno?}/{status?}', [IotledsUpdate::class, 'ledupdate'])->name('ledupdate');
+Route::get('ledupdate/{sn?}/{st?}', [IotledsUpdate::class, 'ledupdate'])->name('ledupdate');
 Route::get('led2update', [IotledsUpdate::class, 'led2update'])->name('led2update');
+Route::get('optimize', function () {
+    $exitCode = Artisan::call('optimize:clear');
+    if($exitCode == 0){
+        echo "run optimize:clear completed";
+    }else{
+        echo "run optimize:clear error";
+    }
+});
