@@ -7,8 +7,8 @@ use App\Models\Iotleds;
 
 class IotledsController extends Component
 {
-    public $status = '0';
-    public $serialno = '1234';
+    public $status;
+    public $serialno;
  
     public function led_on()
     {
