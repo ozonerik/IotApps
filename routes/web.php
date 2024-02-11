@@ -22,3 +22,4 @@ Route::get('/', function () {
 
 Route::get('/', IotledsController::class);
 Route::get('ledupdate/{serialno?}/{status?}', [IotledsUpdate::class, 'ledupdate'])->name('ledupdate');
+Route::get('led2update', [IotledsUpdate::class, 'led2update'])->name('led2update');

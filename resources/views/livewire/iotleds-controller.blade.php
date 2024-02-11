@@ -1,7 +1,11 @@
 <div class="container text-center">
-    <div class="row mt-5">
+    <div class="row mt-5 mb-3">
         <div class="col">
-            <h1>{{ $statusled->status }}</h1>
+            @if($statusled->status==1)
+            <img src="{{ asset('led/img/led_on.png') }}" class="rounded" style="width:200px" alt="led-on">
+            @else
+            <img src="{{ asset('led/img/led_off.png') }}" class="rounded" style="width:200px" alt="led-off">
+            @endif
         </div>
     </div>
     <form class="form-floating" method="post" enctype="multipart/form-data" autocomplete="off" wire:submit="save">
