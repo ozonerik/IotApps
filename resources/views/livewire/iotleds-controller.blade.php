@@ -7,13 +7,15 @@
     <form class="form-floating" method="post" enctype="multipart/form-data" autocomplete="off" wire:submit="save">
     <div class="row">
         <div class="col">
-            <input type="text" wire:model="serialno" name="serialno" class="form-control" id="serialno" placeholder="1234" value="1234">
-            <label for="serialno">Input Serial Number</label>
+            <div class="form-floating mb-3">
+                <input type="text" wire:model="serialno" name="serialno" class="form-control" id="serialno" placeholder="Serial No Device">
+                <label for="serialno">Input Serial Number</label>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            @if($status==1)
+            @if($statusled->status==1)
             <button type="submit" class="btn btn-danger" wire:click="led_off">LED OFF</button>
             @else
             <button type="submit" class="btn btn-primary" wire:click="led_on">LED ON</button>

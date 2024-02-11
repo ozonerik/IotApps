@@ -30,7 +30,7 @@ class IotledsController extends Component
                 'status' => $this->status
             ]);
         }else{
-            dd('serial no tidak ditemukan');
+            dd('Serial No Tidak Terdaftar');
         }
     }
 
