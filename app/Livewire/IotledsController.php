@@ -29,8 +29,6 @@ class IotledsController extends Component
             ->update([
                 'status' => $this->status
             ]);
-        }else{
-            dd('Serial No Tidak Terdaftar');
         }
     }
 

@@ -1,4 +1,10 @@
 <div class="container text-center">
+@if(empty($statusled))
+<h1 class="text-danger mt-5">Serial Number Tidak Ditemukan</h1>
+<br>
+<a href="{{ url('/') }}" class="btn btn-info" >Back</a>
+@else
+
     <div class="row mt-5 mb-3">
         <div class="col">
             @if($statusled->status==1)
@@ -27,4 +33,5 @@
         </div>
     </div>
     </form>
+@endif
 </div>
