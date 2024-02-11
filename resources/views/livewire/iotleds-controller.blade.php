@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center" wire:poll.keep-alive>
 @if(empty($statusled))
 <h1 class="text-danger mt-5">Serial Number Tidak Ditemukan</h1>
 <br>
