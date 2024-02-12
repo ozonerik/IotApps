@@ -18,7 +18,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
-    //header username and password api
+    //header http auth username and password api
     'username' => 'smeker',
     'password' => 'p4ssw0rd123',
 
