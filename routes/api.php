@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('led3update', [IotledsUpdate::class, 'led3update'])->name('led3update');
+//Route::post('led3update', [IotledsUpdate::class, 'led3update'])->name('led3update');
 Route::post('led4update', [IotledsUpdate::class, 'led4update'])->name('led4update');
