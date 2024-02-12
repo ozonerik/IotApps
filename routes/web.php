@@ -22,8 +22,8 @@ Route::get('/', function () {
  */
 
 Route::get('/', IotledsController::class);
-Route::get('ledupdate/{sn?}/{st?}', [IotledsUpdate::class, 'ledupdate'])->name('ledupdate');
-Route::get('led2update', [IotledsUpdate::class, 'led2update'])->name('led2update');
+//Route::get('ledupdate/{sn?}/{st?}', [IotledsUpdate::class, 'ledupdate'])->name('ledupdate');
+//Route::get('led2update', [IotledsUpdate::class, 'led2update'])->name('led2update');
 Route::get('optimize', function () {
     $exitCode = Artisan::call('optimize:clear');
     if($exitCode == 0){

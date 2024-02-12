@@ -41,11 +41,11 @@ class IotledsUpdate extends Controller
             echo "Serial No Tidak Ditemukan";
         }
         $iotled = Iotleds::get();
-        return response()->json([
+/*         return response()->json([
             'success'   => true,
             'message'   => 'led3update',
             'data'      => $iotled
-        ]);
+        ]); */
     }
 
     public function led2update(Request $request){
