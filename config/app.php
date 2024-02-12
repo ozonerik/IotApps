@@ -18,6 +18,10 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    //header username and password api
+    'username' => 'smeker',
+    'password' => 'p4ssw0rd123',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

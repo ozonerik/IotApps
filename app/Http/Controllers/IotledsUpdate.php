@@ -41,11 +41,34 @@ class IotledsUpdate extends Controller
             echo "Serial No Tidak Ditemukan";
         }
         $iotled = Iotleds::get();
-/*         return response()->json([
-            'success'   => true,
-            'message'   => 'led3update',
-            'data'      => $iotled
-        ]); */
+
+    }
+
+    //rest api using authorization
+    public function led4update(Request $request){
+        if($_SERVER['PHP_AUTH_USER'] === config('app.username') && $_SERVER['PHP_AUTH_PW'] === config('app.password')) {
+            if(!empty($request->sn)){
+                $iotled = Iotleds::whereRelation('iotdevice', 'serialno', '=', $request->sn)->first();
+                if(!empty($iotled)){
+                    if($request->st != ''){
+                        Iotleds::whereRelation('iotdevice', 'serialno', '=', $request->sn)
+                        ->update([
+                            'status' => $request->st
+                        ]);
+                        echo $this->cekledstatus($request->sn);
+                    }else{
+                        echo $this->cekledstatus($request->sn);
+                    }
+                }else{
+                    echo "Serial No Tidak Terdaftar";
+                }
+            }else{
+                echo "Serial No Tidak Ditemukan";
+            }
+            $iotled = Iotleds::get();
+        }else{
+            echo "Authorization Not Valid";
+        }
     }
 
     public function led2update(Request $request){
