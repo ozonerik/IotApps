@@ -20,6 +20,34 @@ class IotledsUpdate extends Controller
         }
     }
     
+    //rest api
+    public function led3update(Request $request){
+        if(!empty($request->sn)){
+            $iotled = Iotleds::whereRelation('iotdevice', 'serialno', '=', $request->sn)->first();
+            if(!empty($iotled)){
+                if($request->st != ''){
+                    Iotleds::whereRelation('iotdevice', 'serialno', '=', $request->sn)
+                    ->update([
+                        'status' => $request->st
+                    ]);
+                    echo $this->cekledstatus($request->sn);
+                }else{
+                    echo $this->cekledstatus($request->sn);
+                }
+            }else{
+                echo "Serial No Tidak Terdaftar";
+            }
+        }else{
+            echo "Serial No Tidak Ditemukan";
+        }
+        $iotled = Iotleds::get();
+        return response()->json([
+            'success'   => true,
+            'message'   => 'led3update',
+            'data'      => $iotled
+        ]);
+    }
+
     public function led2update(Request $request){
         if(!empty($request->sn)){
             $iotled = Iotleds::whereRelation('iotdevice', 'serialno', '=', $request->sn)->first();
